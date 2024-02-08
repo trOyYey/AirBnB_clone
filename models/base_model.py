@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import uuid
 from datetime import datetime
-from __init__ import storage
+from . import storage
 
 class BaseModel():
     def __init__(self, *args, **kwargs):
@@ -14,7 +14,7 @@ class BaseModel():
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new()
+            storage.new(self)
         else:
             for key, value in kwargs.items():
                 setattr(self, key, value)
