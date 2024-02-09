@@ -1,15 +1,12 @@
 #!/usr/bin/python3
 import json
+import os
+from models.base_model import BaseModel
 
 class FileStorage():
     """serializeing instaces to a JSON file and deserializing JSON file to instances"""
-    def __init__(self,):
-        """initialising:
-        __file_path: string - path to the JSON file (ex: file.json)
-        __objects: dictionary - empty but will store all objects by <class name>.id (ex: to store a BaseModel object with id=12121212, the key will be BaseModel.12121212)
-        """
-        self.__file_path = "file.json"
-        self.__objects = {}
+    __file_path = "file.json"
+    __objects = {}
 
     def all(self):
         """ returns the dictionary __objects"""
@@ -21,10 +18,16 @@ class FileStorage():
 
     def save(self):
         """ serializes __objects to the JSON file (path: __file_path)"""
+        falcon = self.__objects
+        falcon_dictionary = {obj : falcon[obj].to_dict() for obj in falcon.keys()}
         with open(self.__file_path, 'w') as file:
-            json.dump(self.__objects.to_json(), file)
-
+            json.dump(falcon_dictionary, file)
     def reload(self):
         """deserializes the JSON file to __objects"""
-        if not self.__file_path:
-            self.__objects = json.load(self.__file_path)
+        if os.path.exists(self.__file_path):
+            with open(self.__file_path) as file:
+                falcon_dictionary = json.load(file)
+                for obj_dict in falcon_dictionary.values():
+                    class_name = obj_dict["__class__"]
+                    del obj_dict["__class__"]
+                    self.new(eval(class_name)(**obj_dict))
