@@ -6,7 +6,9 @@ from models import storage
 import cmd
 import sys
 
-blueprint = {"BaseModel": BaseModel, "User": User}
+blueprint = {"BaseModel": BaseModel, "User": User, "State": State,
+             "City": City, "Amenity": Amenity, "Place": Place,
+             "Review": Review}
 
 
 class HBNBCommand(cmd.Cmd):
