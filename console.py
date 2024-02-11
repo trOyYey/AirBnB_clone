@@ -3,6 +3,7 @@
 from models.base_model import BaseModel
 from models import storage
 import cmd
+import sys
 
 blueprint = {"BaseModel": BaseModel}
 
