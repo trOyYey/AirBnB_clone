@@ -33,7 +33,6 @@ class TestConsole(unittestTestCase):
     def test_emptyline(self):
         """testing emptyline command"""
 
-        with patch("sys.stdout", new = stringIO()) as f:
+        with patch("sys.stdout", new=stringIO()) as f:
             self.console.onecmd("\n")
             self.assertEqual(f.getvalue(), "")
-
