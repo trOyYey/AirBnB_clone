@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """place class"""
-from base_model import BaseModel
+from models.base_model import BaseModel
 from typing import List
 
 
@@ -28,4 +28,3 @@ class place(BaseModel):
     latitude: int = 0
     longitude: int = 0
     amenity_ids: List[str] = []
-    pass

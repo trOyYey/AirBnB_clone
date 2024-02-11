@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """state class that enhirts from BaseModel"""
-import BaseModel
+from models.base_model import BaseModel
 
 
 class state(BaseModel):

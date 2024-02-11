@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """city class that enhirites from BaseModel"""
-from base_model import BaseModel
+from models.base_model import BaseModel
 
 
 class city(BaseModel):
@@ -8,4 +8,3 @@ class city(BaseModel):
 
     state_id: str = ""
     name: str = ""
-    pass
