@@ -13,7 +13,6 @@ class BaseModel():
     created_at and updated_at and then
     the information like name etc"""
 
-
     def __init__(self, *args, **kwargs):
         """
         id: string - assign with an uuid when an instance is created
