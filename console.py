@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import cmd
+import sys
 
 
 class HBNBCommand(cmd.Cmd):
