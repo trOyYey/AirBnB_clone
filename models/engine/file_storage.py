@@ -4,7 +4,9 @@
 import json
 import os
 from models.base_model import BaseModel
+from models.user import User
 
+blueprint = {"BaseModel": BaseModel, "User": User}
 
 class FileStorage():
     """serializeing instaces to a JSON file and deserialization"""
@@ -29,10 +31,12 @@ class FileStorage():
 
     def reload(self):
         """deserializes the JSON file to __objects"""
-        if os.path.exists(self.__file_path):
-            with open(self.__file_path) as file:
-                falcon_dictionary = json.load(file)
-                for obj_dict in falcon_dictionary.values():
-                    class_name = obj_dict["__class__"]
-                    del obj_dict["__class__"]
-                    self.new(eval(class_name)(**obj_dict))
+        try:
+            if os.path.exists(self.__file_path):
+                with open(self.__file_path) as file:
+                    file_dictionary = json.load(file)
+                    for key, value in file_dictionary.items():
+                        attribute = blueprint[value["__class__"]](**value)
+                        self.__objects[key] = attribute
+        except FileNotFoundError:
+            pass
