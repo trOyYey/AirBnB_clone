@@ -4,6 +4,7 @@ import unittest
 from datetime import datetime
 from models.base_model import BaseModel
 import os
+import models
 
 
 class TestBaseModel(unittest.TestCase):
@@ -101,6 +102,11 @@ class TestBaseModel(unittest.TestCase):
         base_model.save()
         with open("file.json", "r") as file:
             self.assertIn(f"BaseModel.{base_model.id}", file.read())
+
+    def test_docs(self):
+        """ everything is documented """
+
+        self.assertIsNotNone(models.base_model.__doc__)
 
 
 if __name__ == '__main__':
