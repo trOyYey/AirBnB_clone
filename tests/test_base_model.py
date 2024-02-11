@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 import unittest
-import models.base_model
+import models
 from models.base_model import BaseModel
 import os
 import models
 
-class TestBaseModel(unittest.TetCase):
+class TestBaseModel(unittest.TestCase):
     """ Unittest of base_model code"""
 
     def test_is_an_instance(self):
@@ -16,11 +16,11 @@ class TestBaseModel(unittest.TetCase):
         self.assertIsInstance(BaseModel_I, BaseModel)
 
     def test_docs(self):
-        """ all = (moduls, class, methodes) are documented??"""
+        """ everything is documented """
 
-        self.assertIsNotNone(base_model.__doc__)
+        self.assertIsNotNone(models.base_model.__doc__)
         self.assertIsNotNone(BaseModel.__init__.__doc__)
-        self.aassertIsNotNone(BaseModel.__str__.__doc__)
+        self.assertIsNotNone(BaseModel.__str__.__doc__)
         self.assertIsNotNone(BaseModel.save.__doc__)
         self.assertIsNotNone(BaseModel.to_dict.__doc__)
 
@@ -38,8 +38,8 @@ class TestBaseModel(unittest.TetCase):
         write = os.access("models/base_model.py", os.W_OK)
         self.assertTrue(write)
         exe = os.access("models/base_model.py", os.X_OK)
-        self.assetTrue(exe)
+        self.assertTrue(exe)
 
 
-if __name__ = "__main__":
+if __name__ == "__main__":
     unittest.main()

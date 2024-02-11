@@ -1,10 +1,19 @@
 #!/usr/bin/python3
+"""
+defining BaseModel class"""
+
 import uuid
 from datetime import datetime
 import models
 
 
 class BaseModel():
+    """ BaseModel is a class that defines
+    the information of something using id
+    created_at and updated_at and then
+    the information like name etc"""
+
+
     def __init__(self, *args, **kwargs):
         """
         id: string - assign with an uuid when an instance is created
