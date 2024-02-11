@@ -4,7 +4,7 @@ import cmd
 
 class HBNBCommand(cmd.Cmd):
     """the entry point of the command interpreter"""
-    prompt = "(hbnb) "
+    prompt = "(hbnb) " if sys.__stdin__.isatty() else ""
 
     def do_quit(self, line):
         """Quit command to exit the program"""
