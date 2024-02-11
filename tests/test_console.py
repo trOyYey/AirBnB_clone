@@ -9,6 +9,7 @@ import console
 import tests
 import os
 
+
 class TestConsole(unittest.TestCase):
     """testing the console"""
 
