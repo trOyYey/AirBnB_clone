@@ -34,7 +34,7 @@ To start, follow those steps below:
 - help command is gonna be your guide in this journy 
 - keep in mind most command can be followed by input you provide,
 ## Examples
-### Example 1:
+### Example 1: Lets Build !
 ```
 create BaseModel
 ```
@@ -44,7 +44,7 @@ Output:
 ```
 keep in mind that this id is generated randomly 
 
-### Example 2:
+### Example 2: Lets See !
 we gonna use command `show` to print details of our Base_Model we created in previous example
 ```
 show BaseModel 5ad197d0-4974-46d3-a65e-1be2f4686046
