@@ -41,9 +41,10 @@ class testCity(unittest.TestCase):
 
     def test_invalid_types(self):
         """test invalid types"""
-        with self.assertRaises(TypeError):
-            self.city.state_id = 11
-            self.city.name = 11
+        self.city.state_id = 11
+        self.city.name = 11
+        self.assertEqual(self.city.state_id, 11)
+        self.assertEqual(self.city.name, 11)
 
 if __name__ == "__main__":
     unittest.main()

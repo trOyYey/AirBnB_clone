@@ -42,7 +42,7 @@ class testAmenity(unittest.TestCase):
     def test_invalid_types(self):
         """test invalide types"""
         self.amenity.name = 11
-        self.assertEqual(self.amenity, 11)
+        self.assertEqual(self.amenity.name, 11)
 
 if __name__ == "__main__":
     unittest.main()

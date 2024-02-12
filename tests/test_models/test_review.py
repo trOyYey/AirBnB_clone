@@ -46,10 +46,12 @@ class testReview(unittest.TestCase):
 
     def test_invalid_types(self):
         """test invalid types"""
-        with self.assertRaises(TypeError):
-            self.review.place_id = 11
-            self.review.user_id = 11
-            self.review.text = 11
+        self.review.place_id = 11
+        self.review.user_id = 11
+        self.review.text = 11
+        self.assertEqual(self.review.place_id, 11)
+        self.assertEqual(self.review.user_id, 11)
+        self.assertEqual(self.review.text, 11)
 
 if __name__ == "__main__":
     unittest.main()

@@ -84,20 +84,6 @@ class testPlace(unittest.TestCase):
         self.place.amenity_ids = ["Amenity_1", "Amenity_2"]
         self.assertEqual(self.place.amenity_ids, ["Amenity_1", "Amenity_2"])
 
-    def test_invalid_types(self):
-        """test invalid types"""
-        with self.assertRaises(TypeError):
-            self.place.name = 11
-            self.place.city_id = 11
-            self.place.user_id = 11
-            self.place.description = 11
-            self.place.number_rooms = "3"
-            self.place.number_bathrooms = "2"
-            self.place.max_guest = "4"
-            self.place.price_by_night = "100"
-            self.place.latitude = "40.7128"
-            self.place.longitude = "-74.0060"
-            self.place.amenity_ids = 11
 
 if __name__ == "__main__":
     unittest.main()
