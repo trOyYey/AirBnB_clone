@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """place class"""
 from models.base_model import BaseModel
-from typing import List
 
 
 class Place(BaseModel):
@@ -27,4 +26,4 @@ class Place(BaseModel):
     price_by_night: int = 0
     latitude: int = 0
     longitude: int = 0
-    amenity_ids: List[str] = []
+    amenity_ids: str = []
