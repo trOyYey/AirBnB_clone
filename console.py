@@ -26,6 +26,44 @@ class HBNBCommand(cmd.Cmd):
         if not sys.__stdin__.isatty():
             print('(hbnb)')
 
+    def default(self, arg):
+        """default function when no command recognized"""
+        if '(' not in arg or ')' not in arg or '.' not in arg:
+            cmd.Cmd.default(self, arg)
+            return
+        class_var = arg.split('.')[0]
+        command_var = arg.split('.')[1]
+        command_var = command_var.split('(')[0]
+        argument_var = arg.split('(')[1]
+        argument_var = argument_var.split(')')[0]
+        '''if '"' in argument_var:
+            argument_var = argument_var.replace('"', '')'''
+        argument_var = argument_var.split(',')
+        if len(argument_var) >= 2 and argument_var[1].strip()[0] == '{':
+            argument_var = [argument_var[0], ','.join(argument_var[1:])]
+        cmd_dict = {"all": self.do_all, "count": self.do_count,
+                    "show": self.do_show,"destroy": self.do_destroy,
+                    "update": self.do_update}
+        if command_var in cmd_dict:
+            cmd_dict[command_var](class_var + ' ' + ' '.join(argument_var))
+        else:
+            cmd.Cmd.default(self, arg)
+
+    def do_count(self, arg):
+        """counts active objects and prints the result"""
+        argument_var = arg.split()
+        if len(argument_var) == 0:
+            print("** class name missing **")
+        elif argument_var[0] not in blueprint:
+            print("** class doesn't exist **")
+        else:
+            dict_var = storage.all()
+            counter = 0
+            for key in dict_var:
+                if argument_var[0] == key.split('.')[0]:
+                    counter = counter + 1
+            print(counter)
+
     def do_quit(self, arg):
         """Quit command to exit the program"""
         return True
@@ -71,6 +109,7 @@ class HBNBCommand(cmd.Cmd):
             if key in obj_dict:
                 print(obj_dict[key])
             else:
+                print(f'{key}')
                 print("** no instance found **")
 
     def help_show(self):
@@ -80,7 +119,7 @@ class HBNBCommand(cmd.Cmd):
         print("Usage: show <className> <id>\n")
 
     def do_destroy(self, arg):
-        '''Deletes an instance using class name and id'''
+        '''completely delete specified instance given by class and id'''
         args = arg.split()
         if len(args) == 0:
             print("** class name missing **")
