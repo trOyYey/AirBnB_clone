@@ -34,7 +34,7 @@ To start, follow those steps below:
 - help command is gonna be your guide in this journy 
 - keep in mind most command can be followed by input you provide,
 ## Examples
-###Example 1:
+### Example 1:
 ```
 create BaseModel
 ```
@@ -44,7 +44,7 @@ Output:
 ```
 keep in mind that this id is generated randomly 
 
-##Example 2:
+### Example 2:
 we gonna use command `show` to print details of our Base_Model we created in previous example
 ```
 show BaseModel 5ad197d0-4974-46d3-a65e-1be2f4686046
@@ -53,12 +53,12 @@ Output:
 ```
 [BaseModel] (5ad197d0-4974-46d3-a65e-1be2f4686046) {'id': '5ad197d0-4974-46d3-a65e-1be2f4686046', 'created_at': datetime.datetime(2024, 2, 12, 0, 41, 22, 864668), 'updated_at': datetime.datetime(2024, 2, 12, 0, 41, 22, 864672)}
 ```
-## Example 3: DESTROY !
+### Example 3: DESTROY !
 ```
 destroy BaseModel 5ad197d0-4974-46d3-a65e-1be2f4686046
 ```
 
-## Example 4: Bye Bye !!
+### Example 4: Bye Bye !!
 
 once you are done and you want to quit, you can simply write `quit` , and thats it !
 
