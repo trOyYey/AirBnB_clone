@@ -10,7 +10,7 @@ class testUser(unittest.TestCase):
     Unittesting user methods
     """
 
-    def settingup(self):
+    def setUp(self):
         """
         setter for user
         """
@@ -108,5 +108,3 @@ class testUser(unittest.TestCase):
         self.assertEqual(self.user.last_name, 332)
 
 
-if __name__ == '__main__':
-    unittest.main()
