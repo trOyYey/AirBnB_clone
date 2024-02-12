@@ -4,7 +4,7 @@ from models.base_model import BaseModel
 from typing import List
 
 
-class place(BaseModel):
+class Place(BaseModel):
     """
     city_id: string - empty string: it will be the City.id
     user_id: string - empty string: it will be the User.id
