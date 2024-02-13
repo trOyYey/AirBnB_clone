@@ -42,7 +42,7 @@ class HBNBCommand(cmd.Cmd):
         if len(argument_var) >= 2 and argument_var[1].strip()[0] == '{':
             argument_var = [argument_var[0], ','.join(argument_var[1:])]
         cmd_dict = {"all": self.do_all, "count": self.do_count,
-                    "show": self.do_show,"destroy": self.do_destroy,
+                    "show": self.do_show, "destroy": self.do_destroy,
                     "update": self.do_update}
         if command_var in cmd_dict:
             cmd_dict[command_var](class_var + ' ' + ' '.join(argument_var))
@@ -169,6 +169,9 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, arg):
         '''updates an instance using user input'''
         args = arg.split()
+        dict_indicator = 0
+        if len(arg) > 3 and args[2].strip()[0] == '{':
+            dict_indicator = 1
         obj_dict = storage.all()
         if len(args) == 0:
             print("** class name missing **")
@@ -184,12 +187,32 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         else:
             instance = obj_dict[f"{args[0]}.{args[1]}"]
-            args[3] = args[3].strip("\"\'")
-            if args[2] in instance.__dict__:
-                args[3] = type(instance.__dict__[args[2]])(args[3])
-            instance.__dict__[args[2]] = args[3]
+            if dict_indicator != 1:
+                args[3] = args[3].strip("\"\'")
+                if args[2] in instance.__dict__:
+                    args[3] = type(instance.__dict__[args[2]])(args[3])
+                instance.__dict__[args[2]] = args[3]
+            else:
+                self.update_dict(instance, args[2:])
             instance.save()
             storage.save()
+
+    def update_dict(self, instance, args):
+        """updating class instances with dict arguments"""
+        for i in range(0, len(args), 2):
+            if (i + 1 == len(args)):
+                return
+            '''print(f'{args[i]}')'''
+            args[i] = args[i].strip("{:")
+            args[i] = args[i].strip('\'\"')
+            args[i + 1] = args[i + 1].strip("},)")
+            '''print(f'{args[i + 1]}')'''
+            args[i + 1] = args[i + 1].strip('\"\'')
+            args[i + 1] = args[i + 1].strip("\"\')")
+            '''print(f'{args[i + 1]}')'''
+            if args[i] in instance.__dict__:
+                args[i + 1] = type(instance.__dict__[args[i]])(args[i + 1])
+            instance.__dict__[args[i]] = args[i + 1]
 
     def help_update(self):
         '''Documentation for how update is executed'''
