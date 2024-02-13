@@ -41,3 +41,45 @@ class TestConsole(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             self.console.onecmd("\n")
             self.assertEqual(f.getvalue(), "")
+
+    def test_quit(self):
+        """Test quit command"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.assertTrue(self.console.onecmd("quit"))
+
+    def test_EOF(self):
+        """Test EOF command"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.assertTrue(self.console.onecmd("EOF"))
+
+    def test_create(self):
+        """Test create command"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.console.onecmd("create BaseModel")
+            self.assertNotEqual(f.getvalue().strip(), "** class name missing **")
+            self.assertNotEqual(f.getvalue().strip(), "** class doesn't exist **")
+
+    def test_show(self):
+        """Test show command"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.console.onecmd("show BaseModel")
+            self.assertEqual(f.getvalue().strip(), "** instance id missing **")
+
+    def test_destroy(self):
+        """Test destroy command"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.console.onecmd("destroy BaseModel")
+            self.assertEqual(f.getvalue().strip(), "** instance id missing **")
+
+    def test_update(self):
+        """Test update command"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.console.onecmd("update BaseModel")
+            self.assertEqual(f.getvalue().strip(), "** instance id missing **")
+
+    def test_all(self):
+        """Test all command"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.console.onecmd("all")
+            self.assertNotEqual(f.getvalue().strip(), "** class doesn't exist **")
+
