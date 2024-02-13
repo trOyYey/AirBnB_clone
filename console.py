@@ -42,7 +42,7 @@ class HBNBCommand(cmd.Cmd):
         if len(argument_var) >= 2 and argument_var[1].strip()[0] == '{':
             argument_var = [argument_var[0], ','.join(argument_var[1:])]
         cmd_dict = {"all": self.do_all, "count": self.do_count,
-                    "show": self.do_show,"destroy": self.do_destroy,
+                    "show": self.do_show, "destroy": self.do_destroy,
                     "update": self.do_update}
         if command_var in cmd_dict:
             cmd_dict[command_var](class_var + ' ' + ' '.join(argument_var))
@@ -219,6 +219,7 @@ class HBNBCommand(cmd.Cmd):
         print("Updates an instance based on the class name and id")
         print("adding or updating attribute (saves changes to JSON file)")
         print("Usage: update <class name> <id> <att name> \"<att value>\"\n")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
