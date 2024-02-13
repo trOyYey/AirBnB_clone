@@ -1,13 +1,21 @@
 #!/usr/bin/python3
 """Unittest for console.py"""
 
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 from console import HBNBCommand
 from io import StringIO
 import unittest
 import console
 import tests
 import os
+from models.base_model import BaseModel
+from models.user import User
+from models import storage
+from models.state import State
+from models.place import Place
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class TestConsole(unittest.TestCase):
@@ -26,6 +34,10 @@ class TestConsole(unittest.TestCase):
             os.remove("file.json")
         except FileNotFoundError:
             pass
+
+    @classmethod
+    def all(cls):
+        return list(cls.__objects.values())
 
     def test_doc_strings(self):
         """ everything is docummented??"""
@@ -82,4 +94,24 @@ class TestConsole(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             self.console.onecmd("all")
             self.assertNotEqual(f.getvalue().strip(), "** class doesn't exist **")
+
+    def test_missing_class(self):
+        expected = "** class name missing **"
+        with patch("sys.stdout", new=StringIO()) as O:
+            self.assertFalse(HBNBCommand().onecmd("show"))
+            self.assertEqual(expected, O.getvalue().strip())
+        with patch("sys.stdout", new=StringIO()) as O:
+            self.assertFalse(HBNBCommand().onecmd(".show()"))
+            self.assertEqual(expected, O.getvalue().strip())
+
+    def test_invalid_class(self):
+        expected = "** class doesn't exist **"
+        with patch("sys.stdout", new=StringIO()) as o:
+            self.assertFalse(HBNBCommand().onecmd("show MyModel"))
+            self.assertEqual(expected, o.getvalue().strip())
+        with patch("sys.stdout", new=StringIO()) as o:
+            self.assertFalse(HBNBCommand().onecmd("MyModel.show()"))
+            self.assertEqual(expected, o.getvalue().strip())
+if __name__ == "__main__":
+    unittest.main()
 
