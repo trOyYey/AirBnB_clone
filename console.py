@@ -19,12 +19,7 @@ blueprint = {"BaseModel": BaseModel, "User": User, "State": State,
 class HBNBCommand(cmd.Cmd):
     """airBNB main command interpreter class"""
 
-    prompt = "(hbnb) " if sys.__stdin__.isatty() else ""
-
-    def preloop(self):
-        """Prints when isatty is false"""
-        if not sys.__stdin__.isatty():
-            print('(hbnb)')
+    prompt = "(hbnb) "
 
     def default(self, arg):
         """default function when no command recognized"""
