@@ -106,5 +106,3 @@ class testUser(unittest.TestCase):
         self.assertEqual(self.user.password, 332)
         self.assertEqual(self.user.first_name, 332)
         self.assertEqual(self.user.last_name, 332)
-
-

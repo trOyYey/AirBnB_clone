@@ -39,5 +39,6 @@ class testState(unittest.TestCase):
         self.state.name = 11
         self.assertEqual(self.state.name, 11)
 
+
 if __name__ == "__main__":
     unittest.main()

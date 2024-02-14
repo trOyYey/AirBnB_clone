@@ -48,7 +48,7 @@ class testPlace(unittest.TestCase):
         self.assertEqual(self.place.latitude, 0.0)
         self.assertEqual(self.place.longitude, 0.0)
         self.assertEqual(self.place.amenity_ids, [])
-        
+
     def testNoneEmptyAttributes(self):
         """ test non empty attributes"""
         self.place.name = "Soufiane_Ali"
