@@ -44,5 +44,6 @@ class testAmenity(unittest.TestCase):
         self.amenity.name = 11
         self.assertEqual(self.amenity.name, 11)
 
+
 if __name__ == "__main__":
     unittest.main()
