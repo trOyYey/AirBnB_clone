@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Unittest for console """
+""" Unittest for console.py """
 import unittest
 from io import StringIO
 from unittest.mock import patch
@@ -9,7 +9,8 @@ from models import storage
 from models.engine.file_storage import FileStorage
 
 
-blueprint = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+blueprint = ["BaseModel", "User", "State", "City", "Amenity",
+             "Place", "Review"]
 
 
 class ConsoleTests(unittest.TestCase):
