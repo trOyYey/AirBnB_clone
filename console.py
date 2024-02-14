@@ -69,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_EOF(self, arg):
-        """End of line command to exit the program"""
+        """Quit when end of file"""
         return True
 
     def emptyline(self):
@@ -105,11 +105,11 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             obj_dict = storage.all()
-            key = args[0] + "." + args[1]
+            key = "{}.{}".format(args[0], args[1])
             if key in obj_dict:
                 print(obj_dict[key])
             else:
-                print(f'{key}')
+                '''print(f'{key}')'''
                 print("** no instance found **")
 
     def help_show(self):
@@ -170,7 +170,7 @@ class HBNBCommand(cmd.Cmd):
         '''updates an instance using user input'''
         args = arg.split()
         dict_indicator = 0
-        if len(arg) > 3 and args[2].strip()[0] == '{':
+        if len(args) > 3 and args[2].strip()[0] == '{':
             dict_indicator = 1
         obj_dict = storage.all()
         if len(args) == 0:
